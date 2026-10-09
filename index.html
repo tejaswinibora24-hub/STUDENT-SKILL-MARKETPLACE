@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students Skill Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#" data-page="home">🎓 SkillMarket</a>
+  <nav>
+    <button data-page="home">Home</button>
+    <button data-page="register">Register</button>
+    <button data-page="skills">Explore Skills</button>
+    <button data-page="dashboard">Dashboard</button>
+    <button data-page="feedback">Feedback</button>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="page active">
+    <div class="hero">
+      <div>
+        <span class="tag">LEARN • SHARE • GROW</span>
+        <h1>Students Skill Marketplace</h1>
+        <p>Discover new skills, learn from others and build your future.</p>
+        <button class="primary" id="startBtn">Start Your Journey</button>
+        <button class="secondary" data-page="skills">Explore Skills</button>
+      </div>
+      <div class="hero-art">
+        <div class="big-emoji">👩‍🎓 💻 📚</div>
+        <h2>Learn Skills. Build Your Future.</h2>
+      </div>
+    </div>
+
+    <h2 class="center">How It Works</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="emoji">📝</div>
+        <h3>1. Register</h3>
+        <p>Create your student account.</p>
+        <button class="primary" data-page="register">Register Now</button>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🔍</div>
+        <h3>2. Select Skills</h3>
+        <p>Explore different learning skills.</p>
+        <button class="primary" data-page="skills">View Skills</button>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🚀</div>
+        <h3>3. Book & Learn</h3>
+        <p>Select your skill and preferred date.</p>
+        <button class="primary" data-page="dashboard">Dashboard</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="register" class="page">
+    <h1>Student Registration</h1>
+    <p>Fill in your details to register.</p>
+
+    <form id="registerForm" class="form-card">
+      <label for="fullName">Full Name *</label>
+      <input id="fullName" required minlength="2" placeholder="Enter full name">
+
+      <label for="email">Email Address *</label>
+      <input id="email" type="email" required placeholder="Enter email">
+
+      <label for="mobile">Mobile Number *</label>
+      <input id="mobile" type="tel" inputmode="numeric"
+             pattern="[0-9]{10}" maxlength="10" required
+             placeholder="10 digit mobile number">
+
+      <label for="dob">Date of Birth *</label>
+      <input id="dob" type="date" required>
+
+      <label for="course">Course / Class *</label>
+      <input id="course" required placeholder="e.g. BCA, BE, BSc">
+
+      <label for="password">Password *</label>
+      <input id="password" type="password" minlength="6"
+             required placeholder="Minimum 6 characters">
+
+      <label class="check">
+        <input id="terms" type="checkbox" required>
+        I confirm my details are correct.
+      </label>
+
+      <button class="primary" type="submit">Create Account</button>
+      <p id="registerMessage" class="message"></p>
+    </form>
+  </section>
+
+  <section id="registered" class="page">
+    <div class="success-card">
+      <div class="big-emoji">🎉</div>
+      <h1>Registration Successful!</h1>
+      <p id="welcomeMessage"></p>
+      <button class="primary" data-page="skills">Explore Skills</button>
+      <button class="secondary" data-page="dashboard">Dashboard</button>
+    </div>
+  </section>
+
+  <section id="skills" class="page">
+    <h1>Explore Skills</h1>
+    <p>Search and select a skill to learn.</p>
+
+    <div class="toolbar">
+      <input id="skillSearch" type="search" placeholder="Search skills...">
+      <select id="categoryFilter">
+        <option value="All">All Categories</option>
+        <option value="Technology">Technology</option>
+        <option value="Design">Design</option>
+        <option value="Business">Business</option>
+        <option value="Personal Growth">Personal Growth</option>
+      </select>
+    </div>
+
+    <div id="skillsGrid" class="grid"></div>
+    <p id="noSkills" hidden>No skills found.</p>
+  </section>
+
+  <section id="skillDetails" class="page">
+    <button class="secondary" data-page="skills">← Back to Skills</button>
+    <div id="skillDetailsContent" class="details-grid"></div>
+  </section>
+
+  <section id="booking" class="page">
+    <h1>Book a Learning Session</h1>
+
+    <form id="bookingForm" class="form-card">
+      <label for="bookingStudent">Student Name *</label>
+      <input id="bookingStudent" required placeholder="Enter name">
+
+      <label for="bookingSkill">Selected Skill</label>
+      <input id="bookingSkill" readonly required>
+
+      <label for="bookingDate">Preferred Date *</label>
+      <input id="bookingDate" type="date" required>
+
+      <label for="learningMode">Learning Mode *</label>
+      <select id="learningMode" required>
+        <option value="">Select mode</option>
+        <option>Online</option>
+        <option>Offline</option>
+      </select>
+
+      <label for="bookingDetails">Additional Details</label>
+      <textarea id="bookingDetails" placeholder="Your learning goals"></textarea>
+
+      <button class="primary" type="submit">Confirm Booking</button>
+      <p id="bookingMessage" class="message"></p>
+    </form>
+  </section>
+
+  <section id="dashboard" class="page">
+    <h1>Student Dashboard</h1>
+    <div id="profilePanel" class="card"></div>
+
+    <div class="toolbar">
+      <h2>My Bookings</h2>
+      <button class="primary" data-page="skills">Book a Skill</button>
+    </div>
+
+    <div id="bookingsList"></div>
+
+    <button class="secondary" data-page="feedback">Give Feedback</button>
+    <button class="danger" id="logoutBtn">Log Out</button>
+  </section>
+
+  <section id="feedback" class="page">
+    <h1>Student Feedback</h1>
+
+    <form id="feedbackForm" class="form-card">
+      <label for="feedbackName">Your Name *</label>
+      <input id="feedbackName" required>
+
+      <label for="rating">Rating *</label>
+      <select id="rating" required>
+        <option value="">Choose rating</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Very Good</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Fair</option>
+        <option value="1">1 - Poor</option>
+      </select>
+
+      <label for="comments">Comments *</label>
+      <textarea id="comments" required minlength="3"></textarea>
+
+      <button class="primary" type="submit">Submit Feedback</button>
+      <p id="feedbackMessage" class="message"></p>
+    </form>
+  </section>
+
+  <section id="thanks" class="page">
+    <div class="success-card">
+      <div class="big-emoji">💜</div>
+      <h1>Thank You!</h1>
+      <p>Your feedback has been received.</p>
+      <button class="primary" data-page="home">Back to Home</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <h3>🎓 Students Skill Marketplace</h3>
+  <p>Learn Skills • Share Knowledge • Build Your Future</p>
+</footer>
+
+</body>
+</html>
